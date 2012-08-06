@@ -17,14 +17,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-luna-webkit-api
-===============
-
-This is the repository for a public header file used by luna-sysmgr.
+Summary
+=======
+luna-webkit-api: This is the repository for a public header file used by luna-sysmgr.
 
 How to Build on Linux
 =====================
-
 
 This is built when you build luna-sysmgr:
        webos/luna-sysmgr
