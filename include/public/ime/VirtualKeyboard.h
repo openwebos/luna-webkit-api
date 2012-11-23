@@ -25,16 +25,37 @@
 #include "InputMethod.h"
 
 /*! \class VirtualKeyboard
- * \brief Interface for virtual keyboards.
+ *  \brief Interface for virtual keyboards.
  *
- * To create a new virtual keyboard:
+ *  \section vkb_create Creating a new virtual keyboard
  *
- * 1. Derive your virtual keyboard class from VirtualKeyboard. VirtualKeyboard
- *    inherits from InputMethod, so you'll need to implement the interfaces of
- *    both classes.
+ *  \subsection vkb_create_big_picture The big picture:
  *
- * 2. Create a factory for it: Derive from VirtualKeyboardFactory and
- *    implement the pure virtual methods.
+ *  \li Derive your virtual keyboard class from VirtualKeyboard. VirtualKeyboard
+ *      inherits from InputMethod, so you'll need to implement the interfaces of
+ *      both classes.
+ *
+ *  \li Create a factory for it: Derive from VirtualKeyboardFactory and
+ *      implement the pure virtual methods.
+ *
+ *  \li Use IMEDataInterface to communicate with the host system.
+ * 
+ *  \li The keyboard-efigs repository has an example virtual keyboard plugin.
+ *
+ *  \subsection vkb_create_notice Smaller things worthy of notice:
+ *
+ *  \li Apply initial settings for the virtual keyboard at the end of the
+ *      constructor:
+ *  \code
+ *     m_IMEDataInterface->virtualKeyboardPreferences().applyInitSettings(this);
+ *  \endcode
+ *
+ *  \li The keyboard's height needs to be set for the keyboard to show up:
+ *  \code
+ *     int myKeyboardHeight = 123;
+ *     m_IMEDataInterface->m_keyboardHeight.set(myKeyboardHeight);
+ *  \endcode
+ *  Remember to update this if the keyboard changes it's height.
  *
  */
 class VirtualKeyboard : public InputMethod
