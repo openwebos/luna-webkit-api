@@ -142,16 +142,24 @@ public:
     typedef enum {
         //! Don't even try.
         eVirtualKeyboardSupport_NotSupported,
+
         //! Can work, but really not designed for this device.
         eVirtualKeyboardSupport_Poor,
+
         //! Supports devices of this size.
         eVirtualKeyboardSupport_Preferred_Size,
+
+        //! Supports current locale but fits badly to devices of this size
+        eVirtualKeyboardSupport_Preferred_Locale,
+
         /*! Supports devices of this size and supports current locale
          * particularly well. */
         eVirtualKeyboardSupport_Preferred_SizeAndLocale,
+
         /*! Supports devices of this size, supports current locale
          * particularly well, and matches the display DPI. */
         eVirtualKeyboardSupport_Preferred_SizeDpiAndLocale
+
     } EVirtualKeyboardSupport;
 
     virtual ~VirtualKeyboardFactory() {}
@@ -176,7 +184,7 @@ public:
     virtual EVirtualKeyboardSupport getSupport(int maxWidth,
                                                int maxHeight,
                                                int dpi,
-                                               const char *locale) = 0;
+                                               const std::string locale) = 0;
 };
 
 Q_DECLARE_INTERFACE(VirtualKeyboardFactory,
