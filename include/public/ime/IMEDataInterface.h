@@ -23,6 +23,7 @@
 #define IMEDATAINTERFACE_H
 
 class VirtualKeyboardPreferences;
+class VirtualKeyboard;
 
 #include <glib.h>
 #include "IMEData.h"
@@ -186,6 +187,21 @@ public:
      *  \param key The key that is pressed down.
      */
     virtual void keyDownAudioFeedback(Qt::Key key) = 0;
+
+    virtual void applyInitSettings(VirtualKeyboard *ime) = 0;
+    virtual void activateCombo() = 0;
+    virtual void selectKeyboardCombo(int index) = 0;
+    virtual void selectLayoutCombo(const char * layoutName) = 0;
+    virtual void selectNextKeyboardCombo() = 0;
+    virtual void createDefaultKeyboards() = 0;
+    virtual void clearDefaultDeyboards() = 0;
+    virtual void toggleTapSounds() = 0;
+    virtual bool getTapSounds() const = 0;
+    virtual int  getKeyboardComboCount() const = 0;
+    virtual bool getSpaces2period() const = 0;
+    virtual void selectKeyboardSize(int size) = 0;
+    virtual const char* getLanguageFromKeyboardCombo(int index) = 0;
+    virtual const char* getLayoutFromKeyboardCombo(int index) = 0;
 
 Q_SIGNALS:
     /*! \brief Signal the system that an area on the screen should be updated.
