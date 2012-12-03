@@ -188,19 +188,63 @@ public:
      */
     virtual void keyDownAudioFeedback(Qt::Key key) = 0;
 
+    /*! \brief Apply initial settings for the virtual keyboard.
+     *  This method must be called by the class that is inherited from
+     *  VirtualKeyboard in it's constructor.
+     */
     virtual void applyInitSettings(VirtualKeyboard *ime) = 0;
+
+    /*! \brief Activate the current virtual keyboard layout & language combo.
+     */
     virtual void activateCombo() = 0;
+
+    /*! \brief Activate the keyboard combo at \a index in the list.
+     */
     virtual void selectKeyboardCombo(int index) = 0;
+
+    /*! \brief Activate a keyboard based on it's \a layoutName.
+     */
     virtual void selectLayoutCombo(const char * layoutName) = 0;
+
+    /*! \brief Activate the keyboard next on the list.
+     */
     virtual void selectNextKeyboardCombo() = 0;
+
+    /*! \brief Creates default keyboards. <em>Use only for testing purposes.</em>
+     */
     virtual void createDefaultKeyboards() = 0;
+
+    /*! \brief Clears the default keyboards. <em>Use only for testing purposes.</em>
+     */
     virtual void clearDefaultDeyboards() = 0;
+
+    /*! \brief Toggle keyboard tap sounds on or off.
+     */
     virtual void toggleTapSounds() = 0;
+
+    /*! \brief Check if tap sounds are on or off.
+     */
     virtual bool getTapSounds() const = 0;
-    virtual int  getKeyboardComboCount() const = 0;
+
+    /*! \brief Get the number of keyboard layout & language combos.
+     */
+    virtual int getKeyboardComboCount() const = 0;
+
+    /*! \brief True if two-spaces are converted to a period.
+     */
     virtual bool getSpaces2period() const = 0;
+
+    /*! \brief Select the keyboard's size.
+     *  0 is default, 1 is large, -1 is small and -2 is extra small.
+     */
     virtual void selectKeyboardSize(int size) = 0;
+
+    /*! \brief Get the language name of the keyboard combo at \a index in the list.
+     */
     virtual const char* getLanguageFromKeyboardCombo(int index) = 0;
+
+    /*! \brief Get the layout name of the keyboard combo at \a index in the list.
+     */
     virtual const char* getLayoutFromKeyboardCombo(int index) = 0;
 
 Q_SIGNALS:
