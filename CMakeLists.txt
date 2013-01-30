@@ -24,6 +24,8 @@ include(webOS/webOS)
 webos_modules_init(1 0 0 QUALIFIER RC2)
 webos_component(2 0 0)
 
+webos_config_build_doxygen(doc Doxyfile)
+
 # install ime/*.h files in /usr/include/ime
 webos_build_pkgconfig(files/pkgconfig/luna-webkit-api)
 install(DIRECTORY include/public/ime DESTINATION ${WEBOS_INSTALL_INCLUDEDIR})

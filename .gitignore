@@ -26,3 +26,5 @@
 /release*
 /debug*
 /build*
+/docs
+
