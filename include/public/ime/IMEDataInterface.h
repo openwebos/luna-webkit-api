@@ -1,6 +1,6 @@
 /* @@@LICENSE
 *
-*      Copyright (c) 2010-2012 Hewlett-Packard Development Company, L.P.
+*      Copyright (c) 2010-2013 Hewlett-Packard Development Company, L.P.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@
 class VirtualKeyboardPreferences;
 class VirtualKeyboard;
 
-#include <glib.h>
+#include <lunaservice.h>
+
 #include "IMEData.h"
 
 #if 0
@@ -152,8 +153,8 @@ public:
      */
 	virtual void invalidateRect(const QRect& rect) { Q_EMIT signalInvalidateRect(rect); }
 
-    /*! \todo
-     * \param text
+    /*! \brief Provide a new word
+     * \param text The text to commit, which is either an empty string or a word followed by a space
      */
 	virtual void setComposingText(const std::string& text) = 0;
 
@@ -161,13 +162,13 @@ public:
      */
     virtual void commitComposingText() = 0;
 
-    /*! \todo
-     * \param text
+    /*! \brief Provide a replacement word for the short cut
+     * \param text The replacement text
      */
     virtual void commitText(const std::string& text) = 0;
 
-    /*! \brief Request host to perform an editor action.
-     *  \param action The action to perform.
+    /*! \brief Request host to perform an editor action, which currently is to move to either the previous or next field
+     *  \param action The action to perform, currently either FieldAction_Next or FieldAction_Previous
      */
     virtual void performEditorAction(PalmIME::FieldAction action) = 0;
 
@@ -294,8 +295,8 @@ public:
     //! \brief Get virtual keyboard preferences
     virtual VirtualKeyboardPreferences &virtualKeyboardPreferences() = 0;
 
-    //! \brief Get the current main event loop.
-    virtual GMainLoop *getMainLoop() = 0;
+    //! \brief get luna-service handle
+    virtual LSHandle *getLunaServiceHandle() = 0;
 };
 
 #endif // IMEDATAINTERFACE_H
